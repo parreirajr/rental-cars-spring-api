@@ -6,30 +6,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 @Entity
-@Table(name = "carro")
+@Table(name = "cliente")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Carro implements Serializable {
+public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String modelo;
+    private String nome;
 
-    private String ano;
+    private String cpf;
 
-    @Column(name = "qtd_passageiros")
-    private Integer qtdPassageiros;
+    private String cnh;
 
-    private Integer km;
+    private String telefone;
 
-    private String fabricante;
-
-    @Column(name = "vlr_diaria")
-    private BigDecimal vlrDiaria;
 }
