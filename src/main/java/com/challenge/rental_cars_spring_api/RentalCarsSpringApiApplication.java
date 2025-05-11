@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
-@ComponentScan(basePackages = {"config", "com.challenge.rental_cars_spring_api"})
 public class RentalCarsSpringApiApplication {
 
     public static void main(String[] args) {
