@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +22,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @RestController
 @RequestMapping("/alugueis")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class AlugueisRestController {
 
     private final ProcessaArquivo processaArquivo;
@@ -109,7 +113,10 @@ public class AlugueisRestController {
             }
             """)))})
     @GetMapping
-    public ResponseEntity<ListarAlugueisQueryResult> listarAlugueis() {
-        return new ResponseEntity<>(listarAlugueisQuery.execute(), HttpStatus.OK);
+    public ResponseEntity<ListarAlugueisQueryResult> listarAlugueis(
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dataAluguel,
+            @RequestParam(required = false) String modeloCarro
+    ) {
+        return new ResponseEntity<>(listarAlugueisQuery.execute(dataAluguel, modeloCarro), HttpStatus.OK);
     }
 }
